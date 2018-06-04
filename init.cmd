@@ -2,7 +2,6 @@
 
 :: *** Start VARIABLES
 SET cert_name=
-SET cert_password=
 :: *** End VARIABLES ***
 
 :: *** Start SCRIPT ***
@@ -17,12 +16,20 @@ CALL :VERIFY_DEFAULT_CONFIGURATION_FILE
 CALL :CREATE_NEW_CONFIGURATION_FILE
 CALL :SET_BASIC
 CALL :CREATE_ROOT_CA
-CALL :CREATE_KEY_AND_CRT %cert_name% , %cert_password% 
+CALL :CREATE_KEY_AND_CRT %cert_name%
+CALL :SHOW_DOMAINS
+CALL :ATTEMPT_EXIT_PROGRAM
 :: *** End SCRIPT ***
 
-pause
-
 :: *** Start FUNCTIONS ***
+:SHOW_DOMAINS
+	CALL :CLEAR_SCREEN
+	CALL :BEGIN_WELCOME_MESSAGE
+	ECHO [@] Certificate created!
+	ECHO.
+	openssl req -noout -text -in output/%cert_name%/%cert_name%.csr
+EXIT /B 0
+
 :BEGIN_WELCOME_MESSAGE
 	ECHO *******************************************
 	ECHO *      Welcome to MySelfSSL program       *
@@ -46,8 +53,12 @@ EXIT /B 0
 EXIT /B 0
 
 :CREATE_KEY_AND_CRT
+	CALL :CLEAR_SCREEN
+	CALL :BEGIN_WELCOME_MESSAGE
+	ECHO [@] Let's create the certificate files
+	ECHO.
+
 	SET name=%1
-	SET password=%2
 	
 	IF EXIST "output/%name%" (
 		DEL "output/%name%"
@@ -56,8 +67,10 @@ EXIT /B 0
 	MKDIR "output/%name%"
 	
 	openssl genrsa -out output/%name%/%name%.key 2048
-	openssl req -new -key output/%name%/%name%.key -out output/%name%/%name%.csr
-	openssl x509 -req -in output/%name%/%name%.csr -CA ca/rootCA.crt -CAkey ca/rootCA.key -CAcreateserial -out output/%name%/%name%.crt -days 500 -sha256 -config site.cnf
+	openssl req -out output/%name%/%name%.csr -newkey rsa:2048 -nodes -keyout output/%name%/%name%.key -config site.cnf
+	openssl x509 -req -in output/%name%/%name%.csr -CA ca/rootCA.crt -CAkey ca/rootCA.key -CAcreateserial -out output/%name%/%name%.crt -days 500 -sha256
+	openssl pkcs12 -export -out output/%name%/%name%.pfx -inkey output/%name%/%name%.key -in output/%name%/%name%.crt
+	
 EXIT /B 0
 
 :BEGIN_PAUSE
@@ -77,10 +90,6 @@ EXIT /B 0
 	IF NOT EXIST "ca/" (
 		MKDIR ca
 	)
-	
-	IF NOT EXIST "temp/" (
-		MKDIR temp
-	)
 EXIT /B 0
 
 :SET_BASIC
@@ -91,20 +100,12 @@ EXIT /B 0
 		ECHO [!] Invalid certificate name. Try again.
 		GOTO SET_CERT_NAME
 	)
-	
-	:SET_CERT_PASS
-	SET /P cert_password=Certificate password: 
-	
-	IF [%cert_password%] == [] (
-		ECHO [!] Invalid certificate password. Try again.
-		GOTO SET_CERT_PASS
-	)
 EXIT /B 0
 
 :VERIFY_DEFAULT_CONFIGURATION_FILE
 	IF NOT EXIST "default.cnf" (
 		ECHO [!] Default configuration file not found!
-		CALL :EXIT_PROGRAM
+		CALL :ATTEMPT_EXIT_PROGRAM
 	)
 EXIT /B 0
 
@@ -121,13 +122,10 @@ EXIT /B 0
 	)
 EXIT /B 0
 
-:EXIT_PROGRAM
+:ATTEMPT_EXIT_PROGRAM
 	ECHO.
 	ECHO *******************************************
 	ECHO Press any key to exit...
 	PAUSE >NUL
-	GOTO EXIT
-EXIT /B 0
+	EXIT
 :: *** End FUNCTIONS ***
-
-:EXIT

@@ -69,7 +69,7 @@ namespace MySelfSSL.Security
         /// <param name="issuerPrivateKey">Self-generated private key</param>
         /// <param name="keyStrength">Strength of private key</param>
         /// <returns>The certificate</returns>
-        public X509Certificate2 GenerateSelfSignedCertificate()
+        public X509Certificate2 GenerateSelfSignedCertificate(List<string> subjectAlternativeNames = null)
         {
             // Subject Public Key
             this.CertificateInformations.SetKeyPair(this.GenerateKeyPair());
@@ -78,6 +78,17 @@ namespace MySelfSSL.Security
 
             // selfsign certificate
             var certificate = certificateGenerator.Generate(this.CertificateAuthorityInformations.KeyPair.Private, this.Random);
+
+            if (true)
+            {
+                var san = new Asn1Encodable[]
+                {
+                    new GeneralName(GeneralName.DnsName, "localhost")
+                };
+
+                var subjectAlternativeNamesExtension = new DerSequence(san);
+                certificateGenerator.AddExtension(X509Extensions.SubjectAlternativeName.Id, true, subjectAlternativeNamesExtension);
+            }
 
             // correcponding private key
             PrivateKeyInfo info = PrivateKeyInfoFactory.CreatePrivateKeyInfo(this.CertificateAuthorityInformations.KeyPair.Private);
@@ -96,6 +107,8 @@ namespace MySelfSSL.Security
 
             x509.PrivateKey = DotNetUtilities.ToRSA(rsaparams);
             x509.FriendlyName = this.CertificateInformations.SubjectNameWithoutCN;
+
+            this.CertificateInformations.SetCertificate(x509);
 
             // Add CA certificate to Root store
             AddCertToStore(x509, StoreName.My, StoreLocation.LocalMachine);

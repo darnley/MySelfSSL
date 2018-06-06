@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MySelfSSL.Properties
+namespace Holbor.MySelfSSL.Properties
 {
 
 

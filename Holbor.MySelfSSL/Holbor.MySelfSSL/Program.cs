@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MySelfSSL
+namespace Holbor.MySelfSSL
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace MySelfSSL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(new Forms.Main());
         }
     }
 }

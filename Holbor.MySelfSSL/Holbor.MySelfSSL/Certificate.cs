@@ -22,6 +22,11 @@ namespace Holbor.MySelfSSL
 {
     static class Certificate
     {
+        /// <summary>
+        /// Create a new certificate and certificate of Certificate Authority (CA)
+        /// </summary>
+        /// <param name="issuedSubject"></param>
+        /// <param name="issuerSubject"></param>
         public static void CreateCertificate(string issuedSubject, string issuerSubject)
         {
             X509Certificate2 certificateCA = FindCertificateBySubject(issuerSubject, true);

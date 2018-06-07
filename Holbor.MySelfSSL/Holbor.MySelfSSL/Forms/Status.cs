@@ -20,7 +20,12 @@ namespace Holbor.MySelfSSL.Forms
 
         private void Init(object sender, EventArgs e)
         {
-            progressBarCertificate.Value = 70;
+            
+        }
+
+        public void ChangeLoadingText(string text)
+        {
+            textBoxLoading.Text = text;
         }
     }
 }

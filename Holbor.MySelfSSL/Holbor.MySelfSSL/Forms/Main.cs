@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,8 @@ namespace Holbor.MySelfSSL.Forms
 {
     public partial class Main : Form
     {
+        public static Forms.Status statusForm;
+
         public Main()
         {
             InitializeComponent();
@@ -19,14 +22,17 @@ namespace Holbor.MySelfSSL.Forms
 
         private void Init(object sender, EventArgs e)
         {
-            
+            var certificates = Certificate.GetAll(true);
+
+            comboBoxCertificateAuthorities.Items.AddRange(certificates);
         }
 
         private async void CreateCertificateAuthority(object sender, EventArgs e)
         {
             try
             {
-                Status statusForm = new Status();
+                statusForm = new Status();
+                statusForm.ChangeLoadingText("Creating certificate...");
 
                 string certificateAuthoritySubject = "MySelfSSL Root Development CA";
 

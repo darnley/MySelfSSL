@@ -368,7 +368,34 @@ namespace Holbor.MySelfSSL
             return convertedCertificate;
         }
 
-        private static X509Certificate2 FindCertificateBySubject(string certificateSubject, bool isCertificateAuthority = false)
+        public static X509Certificate2[] GetAll(bool isCertificateAuthority = false)
+        {
+            X509Certificate2[] certs;
+            X509Store certStore;
+
+            if (isCertificateAuthority)
+            {
+                certStore = new X509Store(StoreName.Root, StoreLocation.LocalMachine);
+            }
+            else
+            {
+                certStore = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            }
+
+            certStore.Open(OpenFlags.ReadOnly);
+            certs = certStore.Certificates.OfType<X509Certificate2>().Where(x => x.Subject.StartsWith("CN=MySelfSSL")).ToArray();
+
+            certStore.Close();
+
+            if (certs.Count() > 0)
+            {
+                return certs;
+            }
+
+            return null;
+        }
+
+        public static X509Certificate2 FindCertificateBySubject(string certificateSubject, bool isCertificateAuthority = false)
         {
             X509Certificate2 cert;
             X509Store certStore;

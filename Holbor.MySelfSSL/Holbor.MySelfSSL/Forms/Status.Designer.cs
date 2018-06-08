@@ -30,10 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxLoading = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,22 +41,13 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Holbor.MySelfSSL.Properties.Resources.loading_balls;
-            this.pictureBox1.Location = new System.Drawing.Point(108, -33);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(197, 154);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.textBoxLoading);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(9, 10);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(416, 174);
+            this.panel1.Size = new System.Drawing.Size(312, 40);
             this.panel1.TabIndex = 4;
             // 
             // textBoxLoading
@@ -67,10 +56,11 @@
             this.textBoxLoading.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.textBoxLoading.Enabled = false;
             this.textBoxLoading.HideSelection = false;
-            this.textBoxLoading.Location = new System.Drawing.Point(3, 127);
+            this.textBoxLoading.Location = new System.Drawing.Point(2, 13);
+            this.textBoxLoading.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxLoading.Name = "textBoxLoading";
             this.textBoxLoading.ReadOnly = true;
-            this.textBoxLoading.Size = new System.Drawing.Size(410, 15);
+            this.textBoxLoading.Size = new System.Drawing.Size(308, 13);
             this.textBoxLoading.TabIndex = 0;
             this.textBoxLoading.TabStop = false;
             this.textBoxLoading.Text = "Loading...";
@@ -78,13 +68,12 @@
             // 
             // Status
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 198);
+            this.ClientSize = new System.Drawing.Size(330, 60);
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Status";
@@ -93,7 +82,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Status";
             this.Load += new System.EventHandler(this.Init);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -102,7 +90,6 @@
 
         #endregion
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBoxLoading;
     }

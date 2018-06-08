@@ -27,13 +27,27 @@ namespace Holbor.MySelfSSL
         /// </summary>
         /// <param name="issuedSubject"></param>
         /// <param name="issuerSubject"></param>
-        public static void CreateCertificate(string issuedSubject, string issuerSubject)
+        public static void CreateCertificate(string subjectName, X509Certificate2 issuerCertificate, string[] subjectAlternativeNames, KeyPurposeID[] usages)
         {
-            X509Certificate2 certificateCA = FindCertificateBySubject(issuerSubject, true);
+            X509Certificate2 certificate = IssueCertificate(subjectName, issuerCertificate, subjectAlternativeNames, usages);
+                
+            AddCertToStore(certificate, StoreName.My, StoreLocation.LocalMachine);
+        }
+
+        /// <summary>
+        /// Create a certificate for Certificate Authority (CA)
+        /// </summary>
+        /// <param name="subjectName">Certificate Authority Subject DN</param>
+        /// <param name="subjectAlternativeNames">The Subject Alternative Names (SAN)</param>
+        /// <param name="usages">The purpose of that certificate</param>
+        /// <returns></returns>
+        public static void CreateCACertificate(string subjectName, string[] subjectAlternativeNames, KeyPurposeID[] usages)
+        {
+            X509Certificate2 certificateCA = FindCertificateBySubject(subjectName, true);
 
             if (certificateCA == null)
             {
-                certificateCA = CreateCertificateAuthorityCertificate(issuerSubject, null, null);
+                certificateCA = CreateCertificateAuthorityCertificate(subjectName, null, null);
                 AddCertToStore(certificateCA, StoreName.Root, StoreLocation.LocalMachine);
             }
         }
@@ -62,7 +76,7 @@ namespace Holbor.MySelfSSL
         private static X509Certificate2 IssueCertificate(string subjectName, X509Certificate2 issuerCertificate, string[] subjectAlternativeNames, KeyPurposeID[] usages)
         {
             // It's self-signed, so these are the same.
-            var issuerName = issuerCertificate.Subject;
+            var issuerName = issuerCertificate.Subject.Substring(3, issuerCertificate.Subject.Length-3);
 
             var random = GetSecureRandom();
             var subjectKeyPair = GenerateKeyPair(random, 2048);
@@ -79,6 +93,7 @@ namespace Holbor.MySelfSSL
                                                   usages);
             return ConvertCertificate(certificate, subjectKeyPair, random);
         }
+        
 
         /// <summary>
         /// Create a certificate for Certificate Authority (CA)
@@ -346,7 +361,7 @@ namespace Holbor.MySelfSSL
             var store = new Pkcs12Store();
 
             // What Bouncy Castle calls "alias" is the same as what Windows terms the "friendly name".
-            string friendlyName = certificate.SubjectDN.ToString();
+            string friendlyName = certificate.SubjectDN.ToString().Substring(3, certificate.SubjectDN.ToString().Length-3);
 
             // Add the certificate.
             var certificateEntry = new X509CertificateEntry(certificate);

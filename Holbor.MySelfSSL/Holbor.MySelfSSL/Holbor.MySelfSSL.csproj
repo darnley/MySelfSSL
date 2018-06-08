@@ -7,7 +7,7 @@
     <ProjectGuid>{BA8D8EF5-1EE9-408B-99F9-4D779ED72749}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Holbor.MySelfSSL</RootNamespace>
-    <AssemblyName>Holbor.MySelfSSL</AssemblyName>
+    <AssemblyName>MySelfSSL</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -23,7 +23,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>https://holbor.com/programs/MySelfSSL/</UpdateUrl>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

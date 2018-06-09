@@ -16,7 +16,6 @@ using X509Certificate2 = System.Security.Cryptography.X509Certificates.X509Certi
 using X509KeyStorageFlags = System.Security.Cryptography.X509Certificates.X509KeyStorageFlags;
 using X509ContentType = System.Security.Cryptography.X509Certificates.X509ContentType;
 using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 using Org.BouncyCastle.Crypto.Operators;
 
 namespace Holbor.MySelfSSL

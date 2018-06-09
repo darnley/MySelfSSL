@@ -281,5 +281,10 @@ namespace Holbor.MySelfSSL.Forms
                 textBoxCommonName.SelectAll();
             }
         }
+
+        private void CheckForUpdates(object sender, EventArgs e)
+        {
+            MySelfSSL.Update.InstallUpdateSyncWithInfo();
+        }
     }
 }

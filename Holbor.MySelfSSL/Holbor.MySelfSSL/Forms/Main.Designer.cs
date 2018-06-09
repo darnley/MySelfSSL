@@ -62,6 +62,7 @@
             this.buttonRefreshCA = new System.Windows.Forms.Button();
             this.checkBoxWildcardToCommonName = new System.Windows.Forms.CheckBox();
             this.groupBoxCommonName = new System.Windows.Forms.GroupBox();
+            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabIssue.SuspendLayout();
             this.groupBoxCertificateAuthority.SuspendLayout();
             this.groupBoxSelfSignedCertificate.SuspendLayout();
@@ -293,6 +294,7 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.defaultExportPasswordToolStripMenuItem,
+            this.checkForUpdatesToolStripMenuItem,
             this.toolStripSeparator1,
             this.headMenuItemAbout});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -425,6 +427,13 @@
             this.groupBoxCommonName.TabStop = false;
             this.groupBoxCommonName.Text = "Common Name (CA)";
             // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
+            this.checkForUpdatesToolStripMenuItem.Text = "Check for updates";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.CheckForUpdates);
+            // 
             // Main
             // 
             this.AccessibleDescription = "Create Self-Signed Certificates";
@@ -496,5 +505,6 @@
         private System.Windows.Forms.Button buttonRefreshCA;
         private System.Windows.Forms.GroupBox groupBoxCommonName;
         private System.Windows.Forms.CheckBox checkBoxWildcardToCommonName;
+        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
     }
 }

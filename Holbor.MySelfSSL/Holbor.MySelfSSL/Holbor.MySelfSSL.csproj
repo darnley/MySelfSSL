@@ -26,10 +26,12 @@
     <UpdateUrl>https://www.holbor.com/programs/MySelfSSL/</UpdateUrl>
     <TargetCulture>en-US</TargetCulture>
     <ProductName>MySelfSSL</ProductName>
-    <PublisherName>Holbor</PublisherName>
+    <PublisherName>Darnley Costa</PublisherName>
+    <SuiteName>Holbor</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
-    <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>11</ApplicationRevision>
+    <WebPage>index.html</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>13</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

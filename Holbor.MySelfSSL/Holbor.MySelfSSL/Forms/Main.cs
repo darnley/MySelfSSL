@@ -200,6 +200,7 @@ namespace Holbor.MySelfSSL.Forms
             {
                 groupBoxSelfSignedCertificate.Enabled = false;
                 tabControl1.SelectedIndex = 1;
+                buttonCreateCertificateCA.Focus();
             }
         }
 

@@ -22,7 +22,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>https://holbor.com/programs/MySelfSSL/</UpdateUrl>
+    <UpdateUrl>https://www.holbor.com/programs/MySelfSSL/</UpdateUrl>
+    <TargetCulture>en-US</TargetCulture>
+    <ProductName>MySelfSSL</ProductName>
+    <PublisherName>Darnley Costa</PublisherName>
     <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>

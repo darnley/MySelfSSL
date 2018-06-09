@@ -17,6 +17,7 @@ using X509KeyStorageFlags = System.Security.Cryptography.X509Certificates.X509Ke
 using X509ContentType = System.Security.Cryptography.X509Certificates.X509ContentType;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Org.BouncyCastle.Crypto.Operators;
 
 namespace Holbor.MySelfSSL
 {
@@ -199,7 +200,9 @@ namespace Holbor.MySelfSSL
             // Set the signature algorithm. This is used to generate the thumbprint which is then signed
             // with the issuer's private key. We'll use SHA-256, which is (currently) considered fairly strong.
             const string signatureAlgorithm = "SHA256WithRSA";
-            certificateGenerator.SetSignatureAlgorithm(signatureAlgorithm);
+
+            // Not needed if Generate used with an ISignatureFactory
+            // certificateGenerator.SetSignatureAlgorithm(signatureAlgorithm);
 
             var issuerDN = new X509Name(string.Format("CN={0}", issuerName));
             certificateGenerator.SetIssuerDN(issuerDN);
@@ -228,8 +231,10 @@ namespace Holbor.MySelfSSL
             if (subjectAlternativeNames != null && subjectAlternativeNames.Any())
                 AddSubjectAlternativeNames(certificateGenerator, subjectAlternativeNames);
 
+            ISignatureFactory signatureFactory = new Asn1SignatureFactory(signatureAlgorithm, issuerKeyPair.Private, random);
+
             // The certificate is signed with the issuer's private key.
-            var certificate = certificateGenerator.Generate(issuerKeyPair.Private, random);
+            var certificate = certificateGenerator.Generate(signatureFactory);
             return certificate;
         }
 

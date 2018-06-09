@@ -20,6 +20,9 @@ using Org.BouncyCastle.Crypto.Operators;
 
 namespace Holbor.MySelfSSL
 {
+    /// <summary>
+    /// Manipulate X509 certificates
+    /// </summary>
     static class Certificate
     {
         /// <summary>
@@ -29,11 +32,16 @@ namespace Holbor.MySelfSSL
         /// <param name="issuerSubject"></param>
         public static void CreateCertificate(string subjectName, X509Certificate2 issuerCertificate, string[] subjectAlternativeNames, KeyPurposeID[] usages)
         {
+            // Search for existent certificate with provided name
             X509Certificate2 certificate = FindCertificateBySubject(subjectName, false); 
 
+            // If not found a certificate with provided name
             if (certificate == null)
             {
+                // Issue a certificate with provided parameters
                 certificate = IssueCertificate(subjectName, issuerCertificate, subjectAlternativeNames, usages);
+
+                // Add the certificate to the computer
                 AddCertToStore(certificate, StoreName.My, StoreLocation.LocalMachine);
             }
             else
@@ -51,11 +59,16 @@ namespace Holbor.MySelfSSL
         /// <returns></returns>
         public static void CreateCACertificate(string subjectName, string[] subjectAlternativeNames, KeyPurposeID[] usages)
         {
+            // Search for existent certificate with provided name
             X509Certificate2 certificateCA = FindCertificateBySubject(subjectName, true);
 
+            // If not found a certificate with provided name
             if (certificateCA == null)
             {
+                // Issue a certificate with provided parameters
                 certificateCA = CreateCertificateAuthorityCertificate(subjectName, null, null);
+
+                // Add the certificate to the computer
                 AddCertToStore(certificateCA, StoreName.Root, StoreLocation.LocalMachine);
             } else
             {
@@ -73,6 +86,7 @@ namespace Holbor.MySelfSSL
         {
             // We need to pass 'Exportable', otherwise we can't get the private key.
             var issuerCertificate = new X509Certificate2(issuerFileName, password, X509KeyStorageFlags.Exportable);
+
             return issuerCertificate;
         }
 
@@ -398,6 +412,11 @@ namespace Holbor.MySelfSSL
             return convertedCertificate;
         }
 
+        /// <summary>
+        /// Get all certificates with "MySelfSSL" prefix
+        /// </summary>
+        /// <param name="isCertificateAuthority"></param>
+        /// <returns>Found certificates</returns>
         public static X509Certificate2[] GetAll(bool isCertificateAuthority = false)
         {
             X509Certificate2[] certs;
@@ -405,18 +424,25 @@ namespace Holbor.MySelfSSL
 
             if (isCertificateAuthority)
             {
+                // Get certificates from Certificate Authorities store root
                 certStore = new X509Store(StoreName.Root, StoreLocation.LocalMachine);
             }
             else
             {
+                // Get certificates from Personal certificates root
                 certStore = new X509Store(StoreName.My, StoreLocation.CurrentUser);
             }
-
+            
+            // Load the certificate list
             certStore.Open(OpenFlags.ReadOnly);
+
+            // Search for certificates with "MySelfSSL" prefix
             certs = certStore.Certificates.OfType<X509Certificate2>().Where(x => x.Subject.StartsWith("CN=MySelfSSL")).OrderBy(y => y.NotBefore).ToArray();
 
+            // Close the certificate list
             certStore.Close();
 
+            // If found any certificate
             if (certs.Count() > 0)
             {
                 return certs;
@@ -425,31 +451,52 @@ namespace Holbor.MySelfSSL
             return null;
         }
 
+        /// <summary>
+        /// Delete a provided certificate
+        /// </summary>
+        /// <param name="certificateToDelete">The certificate to delete</param>
+        /// <param name="isCertificateAuthority">Is it an Certificate Authority?</param>
         public static void DeleteCertificate(X509Certificate2 certificateToDelete, bool isCertificateAuthority = false)
         {
             X509Store certStore;
 
             if (isCertificateAuthority)
             {
+                // Get certificates from Certificate Authorities store root
                 certStore = new X509Store(StoreName.Root, StoreLocation.LocalMachine);
             }
             else
             {
+                // Get certificates from Personal certificates root
                 certStore = new X509Store(StoreName.My, StoreLocation.LocalMachine);
             }
 
+            // Load the certificate list with WRITE permission (BE CAREFUL!)
             certStore.Open(OpenFlags.ReadWrite);
 
+            // Remove the certificate from list
             certStore.Remove(certificateToDelete);
 
+            // Close the certificate list
             certStore.Close();
         }
 
+        /// <summary>
+        /// Convert the certificate data to string with lines
+        /// </summary>
+        /// <param name="certificate">The certificate</param>
+        /// <returns>The certificate as string</returns>
         public static string CertificateToString(object certificate)
         {
             return string.Join(", ", certificate);
         }
 
+        /// <summary>
+        /// Find an existent certificate by yours subject
+        /// </summary>
+        /// <param name="certificateSubject">The certificate subject</param>
+        /// <param name="isCertificateAuthority">Is it a Certificate Authority?</param>
+        /// <returns>The first found certificate</returns>
         public static X509Certificate2 FindCertificateBySubject(string certificateSubject, bool isCertificateAuthority = false)
         {
             X509Certificate2 cert;
@@ -457,15 +504,21 @@ namespace Holbor.MySelfSSL
 
             if (isCertificateAuthority)
             {
+                // Get certificates from Certificate Authorities store root
                 certStore = new X509Store(StoreName.Root, StoreLocation.LocalMachine);
             } else
             {
+                // Get certificates from Personal certificates root
                 certStore = new X509Store(StoreName.My, StoreLocation.LocalMachine);
             }
-            
+
+            // Load the certificate list
             certStore.Open(OpenFlags.ReadOnly);
+
+            // Search for certificates with the provided subject
             cert = certStore.Certificates.OfType<X509Certificate2>().FirstOrDefault(x => x.Subject.Equals("CN=" + certificateSubject));
 
+            // Close the certificate list
             certStore.Close();
 
             if (cert != null)
@@ -500,20 +553,24 @@ namespace Holbor.MySelfSSL
         {
             try
             {
+                // Load the store
                 X509Store store = new X509Store(storeName, storeLocation);
+
+                // Open the store with WRITE permission
                 store.Open(OpenFlags.ReadWrite);
+
+                // Add a new certificate to the store
                 store.Add(certificate);
 
+                // Close the store
                 store.Close();
 
                 return true;
             }
             catch
             {
-
+                return false;
             }
-
-            return false;
         }
     }
 }

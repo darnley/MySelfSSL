@@ -20,23 +20,27 @@ namespace Holbor.MySelfSSL.Forms
         {
             LoadCertificateAuthorities();
             EnableOrDisableCertificateFields();
-
             comboBoxCertificateAuthorities.DisplayMember = "FriendlyName";
         }
 
         private void LoadCertificateAuthorities()
         {
-            var certificates = Certificate.GetAll(true);
+            X509Certificate2[] certificates = Certificate.GetAll(true);
 
+            // Clear the Certificate Authority list
             comboBoxCertificateAuthorities.Items.Clear();
 
+            // If found any certificate
             if (certificates != null)
             {
+                // Add certificates to the combobox
                 comboBoxCertificateAuthorities.Items.AddRange(certificates);
             }
 
+            // If added more than 0 certificates
             if (comboBoxCertificateAuthorities.Items.Count > 0)
             {
+                // Keep the first certificate selected
                 comboBoxCertificateAuthorities.SelectedIndex = 0;
             }
         }

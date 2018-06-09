@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tabIssue = new System.Windows.Forms.TabPage();
             this.groupBoxCertificateAuthority = new System.Windows.Forms.GroupBox();
+            this.buttonDeleteCA = new System.Windows.Forms.Button();
+            this.buttonShowInformationCA = new System.Windows.Forms.Button();
             this.buttonRefreshCA = new System.Windows.Forms.Button();
             this.comboBoxCertificateAuthorities = new System.Windows.Forms.ComboBox();
             this.groupBoxSelfSignedCertificate = new System.Windows.Forms.GroupBox();
@@ -60,12 +62,10 @@
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.defaultExportPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.headMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipHelp = new System.Windows.Forms.ToolTip(this.components);
-            this.buttonShowInformationCA = new System.Windows.Forms.Button();
-            this.buttonDeleteCA = new System.Windows.Forms.Button();
             this.tabIssue.SuspendLayout();
             this.groupBoxCertificateAuthority.SuspendLayout();
             this.groupBoxSelfSignedCertificate.SuspendLayout();
@@ -108,6 +108,27 @@
             this.groupBoxCertificateAuthority.TabStop = false;
             this.groupBoxCertificateAuthority.Text = "Certificate Authority (CA)";
             // 
+            // buttonDeleteCA
+            // 
+            this.buttonDeleteCA.ForeColor = System.Drawing.Color.Red;
+            this.buttonDeleteCA.Location = new System.Drawing.Point(477, 22);
+            this.buttonDeleteCA.Name = "buttonDeleteCA";
+            this.buttonDeleteCA.Size = new System.Drawing.Size(75, 25);
+            this.buttonDeleteCA.TabIndex = 3;
+            this.buttonDeleteCA.Text = "Delete";
+            this.buttonDeleteCA.UseVisualStyleBackColor = true;
+            this.buttonDeleteCA.Click += new System.EventHandler(this.DeleteSelectedCA);
+            // 
+            // buttonShowInformationCA
+            // 
+            this.buttonShowInformationCA.Location = new System.Drawing.Point(316, 22);
+            this.buttonShowInformationCA.Name = "buttonShowInformationCA";
+            this.buttonShowInformationCA.Size = new System.Drawing.Size(75, 25);
+            this.buttonShowInformationCA.TabIndex = 2;
+            this.buttonShowInformationCA.Text = "Info";
+            this.buttonShowInformationCA.UseVisualStyleBackColor = true;
+            this.buttonShowInformationCA.Click += new System.EventHandler(this.ShowInformationAboutSelectedCA);
+            // 
             // buttonRefreshCA
             // 
             this.buttonRefreshCA.Location = new System.Drawing.Point(397, 22);
@@ -129,7 +150,6 @@
             this.comboBoxCertificateAuthorities.Name = "comboBoxCertificateAuthorities";
             this.comboBoxCertificateAuthorities.Size = new System.Drawing.Size(301, 24);
             this.comboBoxCertificateAuthorities.TabIndex = 0;
-            this.comboBoxCertificateAuthorities.SelectedIndexChanged += new System.EventHandler(this.CertificateAuthoritySizeChanged);
             this.comboBoxCertificateAuthorities.SizeChanged += new System.EventHandler(this.CertificateAuthoritySizeChanged);
             // 
             // groupBoxSelfSignedCertificate
@@ -412,7 +432,7 @@
             // headMenuItemExit
             // 
             this.headMenuItemExit.Name = "headMenuItemExit";
-            this.headMenuItemExit.Size = new System.Drawing.Size(216, 26);
+            this.headMenuItemExit.Size = new System.Drawing.Size(108, 26);
             this.headMenuItemExit.Text = "Exit";
             this.headMenuItemExit.Click += new System.EventHandler(this.Exit);
             // 
@@ -426,17 +446,17 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(244, 6);
-            // 
             // defaultExportPasswordToolStripMenuItem
             // 
             this.defaultExportPasswordToolStripMenuItem.Name = "defaultExportPasswordToolStripMenuItem";
             this.defaultExportPasswordToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
             this.defaultExportPasswordToolStripMenuItem.Text = "Default Export password";
             this.defaultExportPasswordToolStripMenuItem.Click += new System.EventHandler(this.ShowDefaultPasswordInMessageBox);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(244, 6);
             // 
             // headMenuItemAbout
             // 
@@ -449,27 +469,6 @@
             // 
             this.toolTipHelp.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTipHelp.ToolTipTitle = "Field help";
-            // 
-            // buttonShowInformationCA
-            // 
-            this.buttonShowInformationCA.Location = new System.Drawing.Point(316, 22);
-            this.buttonShowInformationCA.Name = "buttonShowInformationCA";
-            this.buttonShowInformationCA.Size = new System.Drawing.Size(75, 25);
-            this.buttonShowInformationCA.TabIndex = 2;
-            this.buttonShowInformationCA.Text = "Info";
-            this.buttonShowInformationCA.UseVisualStyleBackColor = true;
-            this.buttonShowInformationCA.Click += new System.EventHandler(this.ShowInformationAboutSelectedCA);
-            // 
-            // buttonDeleteCA
-            // 
-            this.buttonDeleteCA.ForeColor = System.Drawing.Color.Red;
-            this.buttonDeleteCA.Location = new System.Drawing.Point(477, 22);
-            this.buttonDeleteCA.Name = "buttonDeleteCA";
-            this.buttonDeleteCA.Size = new System.Drawing.Size(75, 25);
-            this.buttonDeleteCA.TabIndex = 3;
-            this.buttonDeleteCA.Text = "Delete";
-            this.buttonDeleteCA.UseVisualStyleBackColor = true;
-            this.buttonDeleteCA.Click += new System.EventHandler(this.DeleteSelectedCA);
             // 
             // Main
             // 

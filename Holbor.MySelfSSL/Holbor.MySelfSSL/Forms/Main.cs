@@ -82,7 +82,7 @@ namespace Holbor.MySelfSSL.Forms
             }
         }
 
-        private async void CreateCertificateAuthority(object sender, EventArgs e)
+        private void CreateCertificateAuthority(object sender, EventArgs e)
         {
             try
             {

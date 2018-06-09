@@ -11,10 +11,11 @@
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish/</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <HockeyAppResourceId>413a64beef264fd1a1da2008b9cd3859</HockeyAppResourceId>
+    <PublishUrl>ftp://host1.hostmf.com.br/programs/MySelfSSL/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
+    <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -22,15 +23,16 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>https://www.holbor.com/programs/MySelfSSL/</InstallUrl>
     <UpdateUrl>https://www.holbor.com/programs/MySelfSSL/</UpdateUrl>
     <TargetCulture>en-US</TargetCulture>
     <ProductName>MySelfSSL</ProductName>
     <PublisherName>Darnley Costa</PublisherName>
     <SuiteName>Holbor</SuiteName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

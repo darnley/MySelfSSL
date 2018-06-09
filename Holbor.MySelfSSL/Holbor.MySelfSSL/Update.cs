@@ -76,9 +76,6 @@ namespace Holbor.MySelfSSL
                         }
                     }
                 }
-            } else
-            {
-                MessageBox.Show("Cannot check for updates. Contact the developer.");
             }
         }
     }

@@ -28,51 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.tabIssue = new System.Windows.Forms.TabPage();
             this.groupBoxCertificateAuthority = new System.Windows.Forms.GroupBox();
+            this.buttonRefreshCA = new System.Windows.Forms.Button();
             this.comboBoxCertificateAuthorities = new System.Windows.Forms.ComboBox();
             this.groupBoxSelfSignedCertificate = new System.Windows.Forms.GroupBox();
+            this.groupBoxCommonName = new System.Windows.Forms.GroupBox();
+            this.textBoxCommonName = new System.Windows.Forms.TextBox();
+            this.checkBoxWildcardToCommonName = new System.Windows.Forms.CheckBox();
             this.groupBoxSAN = new System.Windows.Forms.GroupBox();
             this.textBoxSAN = new System.Windows.Forms.TextBox();
             this.buttonAddSAN = new System.Windows.Forms.Button();
             this.buttonRemoveSAN = new System.Windows.Forms.Button();
             this.listBoxSAN = new System.Windows.Forms.ListBox();
             this.buttonCreateCertificate = new System.Windows.Forms.Button();
-            this.textBoxCommonName = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.headMenu = new System.Windows.Forms.MenuStrip();
-            this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.headMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tabCertificateAuthority = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBoxCreateCertificateAuthority = new System.Windows.Forms.GroupBox();
-            this.textBoxCommonNameCA = new System.Windows.Forms.TextBox();
-            this.labelCommonNameCA = new System.Windows.Forms.Label();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.headMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonCreateCertificateCA = new System.Windows.Forms.Button();
             this.groupBoxSubjectAlternativeNamesCA = new System.Windows.Forms.GroupBox();
             this.textBoxSANCA = new System.Windows.Forms.TextBox();
             this.buttonAddSANCA = new System.Windows.Forms.Button();
             this.buttonRemoveSANCA = new System.Windows.Forms.Button();
             this.listBoxSANCA = new System.Windows.Forms.ListBox();
-            this.buttonCreateCertificateCA = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.defaultExportPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelCommonNameCA = new System.Windows.Forms.Label();
+            this.textBoxCommonNameCA = new System.Windows.Forms.TextBox();
+            this.headMenu = new System.Windows.Forms.MenuStrip();
+            this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.headMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.buttonRefreshCA = new System.Windows.Forms.Button();
-            this.checkBoxWildcardToCommonName = new System.Windows.Forms.CheckBox();
-            this.groupBoxCommonName = new System.Windows.Forms.GroupBox();
-            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultExportPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.headMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTipHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonShowInformationCA = new System.Windows.Forms.Button();
+            this.buttonDeleteCA = new System.Windows.Forms.Button();
             this.tabIssue.SuspendLayout();
             this.groupBoxCertificateAuthority.SuspendLayout();
             this.groupBoxSelfSignedCertificate.SuspendLayout();
+            this.groupBoxCommonName.SuspendLayout();
             this.groupBoxSAN.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.headMenu.SuspendLayout();
             this.tabCertificateAuthority.SuspendLayout();
             this.groupBoxCreateCertificateAuthority.SuspendLayout();
             this.groupBoxSubjectAlternativeNamesCA.SuspendLayout();
-            this.groupBoxCommonName.SuspendLayout();
+            this.headMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabIssue
@@ -81,9 +84,9 @@
             this.tabIssue.Controls.Add(this.groupBoxSelfSignedCertificate);
             this.tabIssue.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tabIssue.Location = new System.Drawing.Point(4, 25);
-            this.tabIssue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabIssue.Margin = new System.Windows.Forms.Padding(4);
             this.tabIssue.Name = "tabIssue";
-            this.tabIssue.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabIssue.Padding = new System.Windows.Forms.Padding(4);
             this.tabIssue.Size = new System.Drawing.Size(577, 427);
             this.tabIssue.TabIndex = 0;
             this.tabIssue.Text = "Issue Certificate";
@@ -92,16 +95,29 @@
             // groupBoxCertificateAuthority
             // 
             this.groupBoxCertificateAuthority.AccessibleName = "Certificate Authority";
+            this.groupBoxCertificateAuthority.Controls.Add(this.buttonDeleteCA);
+            this.groupBoxCertificateAuthority.Controls.Add(this.buttonShowInformationCA);
             this.groupBoxCertificateAuthority.Controls.Add(this.buttonRefreshCA);
             this.groupBoxCertificateAuthority.Controls.Add(this.comboBoxCertificateAuthorities);
             this.groupBoxCertificateAuthority.Location = new System.Drawing.Point(8, 8);
-            this.groupBoxCertificateAuthority.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCertificateAuthority.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxCertificateAuthority.Name = "groupBoxCertificateAuthority";
-            this.groupBoxCertificateAuthority.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCertificateAuthority.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxCertificateAuthority.Size = new System.Drawing.Size(559, 60);
             this.groupBoxCertificateAuthority.TabIndex = 0;
             this.groupBoxCertificateAuthority.TabStop = false;
             this.groupBoxCertificateAuthority.Text = "Certificate Authority (CA)";
+            // 
+            // buttonRefreshCA
+            // 
+            this.buttonRefreshCA.Location = new System.Drawing.Point(397, 22);
+            this.buttonRefreshCA.Name = "buttonRefreshCA";
+            this.buttonRefreshCA.Size = new System.Drawing.Size(75, 25);
+            this.buttonRefreshCA.TabIndex = 1;
+            this.buttonRefreshCA.Text = "Refresh";
+            this.toolTipHelp.SetToolTip(this.buttonRefreshCA, "Update the list of Certificate Authorities.");
+            this.buttonRefreshCA.UseVisualStyleBackColor = true;
+            this.buttonRefreshCA.Click += new System.EventHandler(this.RefreshCertificateAuthorities);
             // 
             // comboBoxCertificateAuthorities
             // 
@@ -109,9 +125,9 @@
             this.comboBoxCertificateAuthorities.FormattingEnabled = true;
             this.comboBoxCertificateAuthorities.IntegralHeight = false;
             this.comboBoxCertificateAuthorities.Location = new System.Drawing.Point(8, 23);
-            this.comboBoxCertificateAuthorities.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxCertificateAuthorities.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxCertificateAuthorities.Name = "comboBoxCertificateAuthorities";
-            this.comboBoxCertificateAuthorities.Size = new System.Drawing.Size(454, 24);
+            this.comboBoxCertificateAuthorities.Size = new System.Drawing.Size(301, 24);
             this.comboBoxCertificateAuthorities.TabIndex = 0;
             this.comboBoxCertificateAuthorities.SelectedIndexChanged += new System.EventHandler(this.CertificateAuthoritySizeChanged);
             this.comboBoxCertificateAuthorities.SizeChanged += new System.EventHandler(this.CertificateAuthoritySizeChanged);
@@ -123,78 +139,23 @@
             this.groupBoxSelfSignedCertificate.Controls.Add(this.groupBoxSAN);
             this.groupBoxSelfSignedCertificate.Controls.Add(this.buttonCreateCertificate);
             this.groupBoxSelfSignedCertificate.Location = new System.Drawing.Point(8, 76);
-            this.groupBoxSelfSignedCertificate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxSelfSignedCertificate.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxSelfSignedCertificate.Name = "groupBoxSelfSignedCertificate";
-            this.groupBoxSelfSignedCertificate.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxSelfSignedCertificate.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxSelfSignedCertificate.Size = new System.Drawing.Size(559, 343);
             this.groupBoxSelfSignedCertificate.TabIndex = 1;
             this.groupBoxSelfSignedCertificate.TabStop = false;
             // 
-            // groupBoxSAN
+            // groupBoxCommonName
             // 
-            this.groupBoxSAN.Controls.Add(this.textBoxSAN);
-            this.groupBoxSAN.Controls.Add(this.buttonAddSAN);
-            this.groupBoxSAN.Controls.Add(this.buttonRemoveSAN);
-            this.groupBoxSAN.Controls.Add(this.listBoxSAN);
-            this.groupBoxSAN.Location = new System.Drawing.Point(7, 118);
-            this.groupBoxSAN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxSAN.Name = "groupBoxSAN";
-            this.groupBoxSAN.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxSAN.Size = new System.Drawing.Size(545, 159);
-            this.groupBoxSAN.TabIndex = 8;
-            this.groupBoxSAN.TabStop = false;
-            this.groupBoxSAN.Text = "Subject Alternative Names (SAN)";
-            // 
-            // textBoxSAN
-            // 
-            this.textBoxSAN.Location = new System.Drawing.Point(9, 23);
-            this.textBoxSAN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxSAN.Name = "textBoxSAN";
-            this.textBoxSAN.Size = new System.Drawing.Size(448, 22);
-            this.textBoxSAN.TabIndex = 2;
-            // 
-            // buttonAddSAN
-            // 
-            this.buttonAddSAN.Location = new System.Drawing.Point(463, 21);
-            this.buttonAddSAN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonAddSAN.Name = "buttonAddSAN";
-            this.buttonAddSAN.Size = new System.Drawing.Size(75, 26);
-            this.buttonAddSAN.TabIndex = 3;
-            this.buttonAddSAN.Text = "Add";
-            this.buttonAddSAN.UseVisualStyleBackColor = true;
-            this.buttonAddSAN.Click += new System.EventHandler(this.AddSAN);
-            // 
-            // buttonRemoveSAN
-            // 
-            this.buttonRemoveSAN.Location = new System.Drawing.Point(463, 53);
-            this.buttonRemoveSAN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonRemoveSAN.Name = "buttonRemoveSAN";
-            this.buttonRemoveSAN.Size = new System.Drawing.Size(75, 100);
-            this.buttonRemoveSAN.TabIndex = 5;
-            this.buttonRemoveSAN.Text = "Remove";
-            this.buttonRemoveSAN.UseVisualStyleBackColor = true;
-            this.buttonRemoveSAN.Click += new System.EventHandler(this.RemoveSAN);
-            // 
-            // listBoxSAN
-            // 
-            this.listBoxSAN.FormattingEnabled = true;
-            this.listBoxSAN.ItemHeight = 16;
-            this.listBoxSAN.Location = new System.Drawing.Point(9, 53);
-            this.listBoxSAN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listBoxSAN.Name = "listBoxSAN";
-            this.listBoxSAN.Size = new System.Drawing.Size(448, 100);
-            this.listBoxSAN.TabIndex = 4;
-            // 
-            // buttonCreateCertificate
-            // 
-            this.buttonCreateCertificate.Location = new System.Drawing.Point(7, 283);
-            this.buttonCreateCertificate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonCreateCertificate.Name = "buttonCreateCertificate";
-            this.buttonCreateCertificate.Size = new System.Drawing.Size(545, 54);
-            this.buttonCreateCertificate.TabIndex = 6;
-            this.buttonCreateCertificate.Text = "Create certificate";
-            this.buttonCreateCertificate.UseVisualStyleBackColor = true;
-            this.buttonCreateCertificate.Click += new System.EventHandler(this.CreateCertificate);
+            this.groupBoxCommonName.Controls.Add(this.textBoxCommonName);
+            this.groupBoxCommonName.Controls.Add(this.checkBoxWildcardToCommonName);
+            this.groupBoxCommonName.Location = new System.Drawing.Point(7, 22);
+            this.groupBoxCommonName.Name = "groupBoxCommonName";
+            this.groupBoxCommonName.Size = new System.Drawing.Size(545, 89);
+            this.groupBoxCommonName.TabIndex = 11;
+            this.groupBoxCommonName.TabStop = false;
+            this.groupBoxCommonName.Text = "Common Name (CA)";
             // 
             // textBoxCommonName
             // 
@@ -207,16 +168,226 @@
             this.textBoxCommonName.Click += new System.EventHandler(this.OnClickInCommonName);
             this.textBoxCommonName.TextChanged += new System.EventHandler(this.OnTypeInCommonName);
             // 
+            // checkBoxWildcardToCommonName
+            // 
+            this.checkBoxWildcardToCommonName.AutoSize = true;
+            this.checkBoxWildcardToCommonName.Checked = true;
+            this.checkBoxWildcardToCommonName.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxWildcardToCommonName.Location = new System.Drawing.Point(9, 47);
+            this.checkBoxWildcardToCommonName.Name = "checkBoxWildcardToCommonName";
+            this.checkBoxWildcardToCommonName.Size = new System.Drawing.Size(333, 21);
+            this.checkBoxWildcardToCommonName.TabIndex = 10;
+            this.checkBoxWildcardToCommonName.Text = "Add wildcard to Common Name (required for IIS)";
+            this.toolTipHelp.SetToolTip(this.checkBoxWildcardToCommonName, "This will add an asterisk in front of the Common Name (CN). This is recommended w" +
+        "hen you are using IIS.");
+            this.checkBoxWildcardToCommonName.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxSAN
+            // 
+            this.groupBoxSAN.Controls.Add(this.textBoxSAN);
+            this.groupBoxSAN.Controls.Add(this.buttonAddSAN);
+            this.groupBoxSAN.Controls.Add(this.buttonRemoveSAN);
+            this.groupBoxSAN.Controls.Add(this.listBoxSAN);
+            this.groupBoxSAN.Location = new System.Drawing.Point(7, 118);
+            this.groupBoxSAN.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxSAN.Name = "groupBoxSAN";
+            this.groupBoxSAN.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxSAN.Size = new System.Drawing.Size(545, 159);
+            this.groupBoxSAN.TabIndex = 8;
+            this.groupBoxSAN.TabStop = false;
+            this.groupBoxSAN.Text = "Subject Alternative Names (SAN)";
+            // 
+            // textBoxSAN
+            // 
+            this.textBoxSAN.Location = new System.Drawing.Point(9, 23);
+            this.textBoxSAN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxSAN.Name = "textBoxSAN";
+            this.textBoxSAN.Size = new System.Drawing.Size(448, 22);
+            this.textBoxSAN.TabIndex = 2;
+            this.textBoxSAN.TextChanged += new System.EventHandler(this.OnTypeInSAN);
+            // 
+            // buttonAddSAN
+            // 
+            this.buttonAddSAN.Enabled = false;
+            this.buttonAddSAN.Location = new System.Drawing.Point(463, 21);
+            this.buttonAddSAN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAddSAN.Name = "buttonAddSAN";
+            this.buttonAddSAN.Size = new System.Drawing.Size(75, 26);
+            this.buttonAddSAN.TabIndex = 3;
+            this.buttonAddSAN.Text = "Add";
+            this.toolTipHelp.SetToolTip(this.buttonAddSAN, "Add a new Subject Alternative Name (SAN) to the certificate to be created.");
+            this.buttonAddSAN.UseVisualStyleBackColor = true;
+            this.buttonAddSAN.Click += new System.EventHandler(this.AddSAN);
+            // 
+            // buttonRemoveSAN
+            // 
+            this.buttonRemoveSAN.Enabled = false;
+            this.buttonRemoveSAN.Location = new System.Drawing.Point(463, 53);
+            this.buttonRemoveSAN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonRemoveSAN.Name = "buttonRemoveSAN";
+            this.buttonRemoveSAN.Size = new System.Drawing.Size(75, 100);
+            this.buttonRemoveSAN.TabIndex = 5;
+            this.buttonRemoveSAN.Text = "Remove";
+            this.toolTipHelp.SetToolTip(this.buttonRemoveSAN, "Remove the selected Subject Alternative Name (SAN) from the list on the left side" +
+        ".");
+            this.buttonRemoveSAN.UseVisualStyleBackColor = true;
+            this.buttonRemoveSAN.Click += new System.EventHandler(this.RemoveSAN);
+            // 
+            // listBoxSAN
+            // 
+            this.listBoxSAN.FormattingEnabled = true;
+            this.listBoxSAN.ItemHeight = 16;
+            this.listBoxSAN.Location = new System.Drawing.Point(9, 53);
+            this.listBoxSAN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxSAN.Name = "listBoxSAN";
+            this.listBoxSAN.Size = new System.Drawing.Size(448, 100);
+            this.listBoxSAN.TabIndex = 4;
+            this.listBoxSAN.Click += new System.EventHandler(this.OnClickInASAN);
+            // 
+            // buttonCreateCertificate
+            // 
+            this.buttonCreateCertificate.Location = new System.Drawing.Point(7, 283);
+            this.buttonCreateCertificate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonCreateCertificate.Name = "buttonCreateCertificate";
+            this.buttonCreateCertificate.Size = new System.Drawing.Size(545, 54);
+            this.buttonCreateCertificate.TabIndex = 6;
+            this.buttonCreateCertificate.Text = "Create certificate";
+            this.buttonCreateCertificate.UseVisualStyleBackColor = true;
+            this.buttonCreateCertificate.Click += new System.EventHandler(this.CreateCertificate);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabIssue);
             this.tabControl1.Controls.Add(this.tabCertificateAuthority);
             this.tabControl1.Location = new System.Drawing.Point(13, 32);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(585, 456);
             this.tabControl1.TabIndex = 2;
+            // 
+            // tabCertificateAuthority
+            // 
+            this.tabCertificateAuthority.Controls.Add(this.label1);
+            this.tabCertificateAuthority.Controls.Add(this.groupBoxCreateCertificateAuthority);
+            this.tabCertificateAuthority.Location = new System.Drawing.Point(4, 25);
+            this.tabCertificateAuthority.Name = "tabCertificateAuthority";
+            this.tabCertificateAuthority.Size = new System.Drawing.Size(577, 427);
+            this.tabCertificateAuthority.TabIndex = 1;
+            this.tabCertificateAuthority.Text = "Certificate Authorities (CA)";
+            this.tabCertificateAuthority.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(5, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(568, 106);
+            this.label1.TabIndex = 2;
+            this.label1.Text = resources.GetString("label1.Text");
+            // 
+            // groupBoxCreateCertificateAuthority
+            // 
+            this.groupBoxCreateCertificateAuthority.AccessibleName = "Certificate Authority";
+            this.groupBoxCreateCertificateAuthority.Controls.Add(this.buttonCreateCertificateCA);
+            this.groupBoxCreateCertificateAuthority.Controls.Add(this.groupBoxSubjectAlternativeNamesCA);
+            this.groupBoxCreateCertificateAuthority.Controls.Add(this.labelCommonNameCA);
+            this.groupBoxCreateCertificateAuthority.Controls.Add(this.textBoxCommonNameCA);
+            this.groupBoxCreateCertificateAuthority.Location = new System.Drawing.Point(4, 121);
+            this.groupBoxCreateCertificateAuthority.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxCreateCertificateAuthority.Name = "groupBoxCreateCertificateAuthority";
+            this.groupBoxCreateCertificateAuthority.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxCreateCertificateAuthority.Size = new System.Drawing.Size(569, 298);
+            this.groupBoxCreateCertificateAuthority.TabIndex = 1;
+            this.groupBoxCreateCertificateAuthority.TabStop = false;
+            this.groupBoxCreateCertificateAuthority.Text = "Create";
+            // 
+            // buttonCreateCertificateCA
+            // 
+            this.buttonCreateCertificateCA.Location = new System.Drawing.Point(8, 235);
+            this.buttonCreateCertificateCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonCreateCertificateCA.Name = "buttonCreateCertificateCA";
+            this.buttonCreateCertificateCA.Size = new System.Drawing.Size(553, 54);
+            this.buttonCreateCertificateCA.TabIndex = 10;
+            this.buttonCreateCertificateCA.Text = "Create certificate";
+            this.buttonCreateCertificateCA.UseVisualStyleBackColor = true;
+            this.buttonCreateCertificateCA.Click += new System.EventHandler(this.CreateCertificateAuthority);
+            // 
+            // groupBoxSubjectAlternativeNamesCA
+            // 
+            this.groupBoxSubjectAlternativeNamesCA.Controls.Add(this.textBoxSANCA);
+            this.groupBoxSubjectAlternativeNamesCA.Controls.Add(this.buttonAddSANCA);
+            this.groupBoxSubjectAlternativeNamesCA.Controls.Add(this.buttonRemoveSANCA);
+            this.groupBoxSubjectAlternativeNamesCA.Controls.Add(this.listBoxSANCA);
+            this.groupBoxSubjectAlternativeNamesCA.Location = new System.Drawing.Point(8, 70);
+            this.groupBoxSubjectAlternativeNamesCA.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBoxSubjectAlternativeNamesCA.Name = "groupBoxSubjectAlternativeNamesCA";
+            this.groupBoxSubjectAlternativeNamesCA.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBoxSubjectAlternativeNamesCA.Size = new System.Drawing.Size(553, 159);
+            this.groupBoxSubjectAlternativeNamesCA.TabIndex = 9;
+            this.groupBoxSubjectAlternativeNamesCA.TabStop = false;
+            this.groupBoxSubjectAlternativeNamesCA.Text = "Subject Alternative Names (SAN)";
+            // 
+            // textBoxSANCA
+            // 
+            this.textBoxSANCA.Location = new System.Drawing.Point(7, 22);
+            this.textBoxSANCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxSANCA.Name = "textBoxSANCA";
+            this.textBoxSANCA.Size = new System.Drawing.Size(460, 22);
+            this.textBoxSANCA.TabIndex = 1;
+            this.textBoxSANCA.TextChanged += new System.EventHandler(this.OnTypeInSANCA);
+            // 
+            // buttonAddSANCA
+            // 
+            this.buttonAddSANCA.Enabled = false;
+            this.buttonAddSANCA.Location = new System.Drawing.Point(473, 22);
+            this.buttonAddSANCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonAddSANCA.Name = "buttonAddSANCA";
+            this.buttonAddSANCA.Size = new System.Drawing.Size(75, 26);
+            this.buttonAddSANCA.TabIndex = 2;
+            this.buttonAddSANCA.Text = "Add";
+            this.buttonAddSANCA.UseVisualStyleBackColor = true;
+            this.buttonAddSANCA.Click += new System.EventHandler(this.AddSANCertificateAuthority);
+            // 
+            // buttonRemoveSANCA
+            // 
+            this.buttonRemoveSANCA.Enabled = false;
+            this.buttonRemoveSANCA.Location = new System.Drawing.Point(473, 55);
+            this.buttonRemoveSANCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonRemoveSANCA.Name = "buttonRemoveSANCA";
+            this.buttonRemoveSANCA.Size = new System.Drawing.Size(75, 98);
+            this.buttonRemoveSANCA.TabIndex = 4;
+            this.buttonRemoveSANCA.Text = "Remove";
+            this.buttonRemoveSANCA.UseVisualStyleBackColor = true;
+            this.buttonRemoveSANCA.Click += new System.EventHandler(this.RemoveSANCertificateAuthority);
+            // 
+            // listBoxSANCA
+            // 
+            this.listBoxSANCA.FormattingEnabled = true;
+            this.listBoxSANCA.ItemHeight = 16;
+            this.listBoxSANCA.Location = new System.Drawing.Point(7, 53);
+            this.listBoxSANCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listBoxSANCA.Name = "listBoxSANCA";
+            this.listBoxSANCA.Size = new System.Drawing.Size(460, 100);
+            this.listBoxSANCA.TabIndex = 3;
+            this.listBoxSANCA.Click += new System.EventHandler(this.OnClickInASANCA);
+            // 
+            // labelCommonNameCA
+            // 
+            this.labelCommonNameCA.AutoSize = true;
+            this.labelCommonNameCA.Location = new System.Drawing.Point(12, 21);
+            this.labelCommonNameCA.Name = "labelCommonNameCA";
+            this.labelCommonNameCA.Size = new System.Drawing.Size(137, 17);
+            this.labelCommonNameCA.TabIndex = 1;
+            this.labelCommonNameCA.Text = "Common Name (CN)";
+            // 
+            // textBoxCommonNameCA
+            // 
+            this.textBoxCommonNameCA.Location = new System.Drawing.Point(8, 41);
+            this.textBoxCommonNameCA.Name = "textBoxCommonNameCA";
+            this.textBoxCommonNameCA.Size = new System.Drawing.Size(553, 22);
+            this.textBoxCommonNameCA.TabIndex = 0;
+            this.textBoxCommonNameCA.Text = "Root Development CA";
+            this.textBoxCommonNameCA.TextChanged += new System.EventHandler(this.OnTypeInCommonNameCA);
             // 
             // headMenu
             // 
@@ -245,142 +416,20 @@
             this.headMenuItemExit.Text = "Exit";
             this.headMenuItemExit.Click += new System.EventHandler(this.Exit);
             // 
-            // tabCertificateAuthority
-            // 
-            this.tabCertificateAuthority.Controls.Add(this.label1);
-            this.tabCertificateAuthority.Controls.Add(this.groupBoxCreateCertificateAuthority);
-            this.tabCertificateAuthority.Location = new System.Drawing.Point(4, 25);
-            this.tabCertificateAuthority.Name = "tabCertificateAuthority";
-            this.tabCertificateAuthority.Size = new System.Drawing.Size(577, 427);
-            this.tabCertificateAuthority.TabIndex = 1;
-            this.tabCertificateAuthority.Text = "Certificate Authorities (CA)";
-            this.tabCertificateAuthority.UseVisualStyleBackColor = true;
-            // 
-            // groupBoxCreateCertificateAuthority
-            // 
-            this.groupBoxCreateCertificateAuthority.AccessibleName = "Certificate Authority";
-            this.groupBoxCreateCertificateAuthority.Controls.Add(this.buttonCreateCertificateCA);
-            this.groupBoxCreateCertificateAuthority.Controls.Add(this.groupBoxSubjectAlternativeNamesCA);
-            this.groupBoxCreateCertificateAuthority.Controls.Add(this.labelCommonNameCA);
-            this.groupBoxCreateCertificateAuthority.Controls.Add(this.textBoxCommonNameCA);
-            this.groupBoxCreateCertificateAuthority.Location = new System.Drawing.Point(4, 121);
-            this.groupBoxCreateCertificateAuthority.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBoxCreateCertificateAuthority.Name = "groupBoxCreateCertificateAuthority";
-            this.groupBoxCreateCertificateAuthority.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxCreateCertificateAuthority.Size = new System.Drawing.Size(569, 298);
-            this.groupBoxCreateCertificateAuthority.TabIndex = 1;
-            this.groupBoxCreateCertificateAuthority.TabStop = false;
-            this.groupBoxCreateCertificateAuthority.Text = "Create";
-            // 
-            // textBoxCommonNameCA
-            // 
-            this.textBoxCommonNameCA.Location = new System.Drawing.Point(8, 41);
-            this.textBoxCommonNameCA.Name = "textBoxCommonNameCA";
-            this.textBoxCommonNameCA.Size = new System.Drawing.Size(553, 22);
-            this.textBoxCommonNameCA.TabIndex = 0;
-            this.textBoxCommonNameCA.Text = "Root Development CA";
-            this.textBoxCommonNameCA.TextChanged += new System.EventHandler(this.OnTypeInCommonNameCA);
-            // 
-            // labelCommonNameCA
-            // 
-            this.labelCommonNameCA.AutoSize = true;
-            this.labelCommonNameCA.Location = new System.Drawing.Point(12, 21);
-            this.labelCommonNameCA.Name = "labelCommonNameCA";
-            this.labelCommonNameCA.Size = new System.Drawing.Size(137, 17);
-            this.labelCommonNameCA.TabIndex = 1;
-            this.labelCommonNameCA.Text = "Common Name (CN)";
-            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.defaultExportPasswordToolStripMenuItem,
-            this.checkForUpdatesToolStripMenuItem,
             this.toolStripSeparator1,
             this.headMenuItemAbout});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // headMenuItemAbout
+            // toolStripSeparator1
             // 
-            this.headMenuItemAbout.Name = "headMenuItemAbout";
-            this.headMenuItemAbout.Size = new System.Drawing.Size(247, 26);
-            this.headMenuItemAbout.Text = "About";
-            this.headMenuItemAbout.Click += new System.EventHandler(this.OpenAboutWindow);
-            // 
-            // groupBoxSubjectAlternativeNamesCA
-            // 
-            this.groupBoxSubjectAlternativeNamesCA.Controls.Add(this.textBoxSANCA);
-            this.groupBoxSubjectAlternativeNamesCA.Controls.Add(this.buttonAddSANCA);
-            this.groupBoxSubjectAlternativeNamesCA.Controls.Add(this.buttonRemoveSANCA);
-            this.groupBoxSubjectAlternativeNamesCA.Controls.Add(this.listBoxSANCA);
-            this.groupBoxSubjectAlternativeNamesCA.Location = new System.Drawing.Point(8, 70);
-            this.groupBoxSubjectAlternativeNamesCA.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBoxSubjectAlternativeNamesCA.Name = "groupBoxSubjectAlternativeNamesCA";
-            this.groupBoxSubjectAlternativeNamesCA.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBoxSubjectAlternativeNamesCA.Size = new System.Drawing.Size(553, 159);
-            this.groupBoxSubjectAlternativeNamesCA.TabIndex = 9;
-            this.groupBoxSubjectAlternativeNamesCA.TabStop = false;
-            this.groupBoxSubjectAlternativeNamesCA.Text = "Subject Alternative Names (SAN)";
-            // 
-            // textBoxSANCA
-            // 
-            this.textBoxSANCA.Location = new System.Drawing.Point(7, 22);
-            this.textBoxSANCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBoxSANCA.Name = "textBoxSANCA";
-            this.textBoxSANCA.Size = new System.Drawing.Size(460, 22);
-            this.textBoxSANCA.TabIndex = 1;
-            // 
-            // buttonAddSANCA
-            // 
-            this.buttonAddSANCA.Location = new System.Drawing.Point(473, 22);
-            this.buttonAddSANCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonAddSANCA.Name = "buttonAddSANCA";
-            this.buttonAddSANCA.Size = new System.Drawing.Size(75, 26);
-            this.buttonAddSANCA.TabIndex = 2;
-            this.buttonAddSANCA.Text = "Add";
-            this.buttonAddSANCA.UseVisualStyleBackColor = true;
-            this.buttonAddSANCA.Click += new System.EventHandler(this.AddSANCertificateAuthority);
-            // 
-            // buttonRemoveSANCA
-            // 
-            this.buttonRemoveSANCA.Location = new System.Drawing.Point(473, 55);
-            this.buttonRemoveSANCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonRemoveSANCA.Name = "buttonRemoveSANCA";
-            this.buttonRemoveSANCA.Size = new System.Drawing.Size(75, 98);
-            this.buttonRemoveSANCA.TabIndex = 4;
-            this.buttonRemoveSANCA.Text = "Remove";
-            this.buttonRemoveSANCA.UseVisualStyleBackColor = true;
-            this.buttonRemoveSANCA.Click += new System.EventHandler(this.RemoveSANCertificateAuthority);
-            // 
-            // listBoxSANCA
-            // 
-            this.listBoxSANCA.FormattingEnabled = true;
-            this.listBoxSANCA.ItemHeight = 16;
-            this.listBoxSANCA.Location = new System.Drawing.Point(7, 53);
-            this.listBoxSANCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listBoxSANCA.Name = "listBoxSANCA";
-            this.listBoxSANCA.Size = new System.Drawing.Size(460, 100);
-            this.listBoxSANCA.TabIndex = 3;
-            // 
-            // buttonCreateCertificateCA
-            // 
-            this.buttonCreateCertificateCA.Location = new System.Drawing.Point(8, 235);
-            this.buttonCreateCertificateCA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonCreateCertificateCA.Name = "buttonCreateCertificateCA";
-            this.buttonCreateCertificateCA.Size = new System.Drawing.Size(553, 54);
-            this.buttonCreateCertificateCA.TabIndex = 10;
-            this.buttonCreateCertificateCA.Text = "Create certificate";
-            this.buttonCreateCertificateCA.UseVisualStyleBackColor = true;
-            this.buttonCreateCertificateCA.Click += new System.EventHandler(this.CreateCertificateAuthority);
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(5, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(568, 106);
-            this.label1.TabIndex = 2;
-            this.label1.Text = resources.GetString("label1.Text");
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(244, 6);
             // 
             // defaultExportPasswordToolStripMenuItem
             // 
@@ -389,50 +438,38 @@
             this.defaultExportPasswordToolStripMenuItem.Text = "Default Export password";
             this.defaultExportPasswordToolStripMenuItem.Click += new System.EventHandler(this.ShowDefaultPasswordInMessageBox);
             // 
-            // toolStripSeparator1
+            // headMenuItemAbout
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(244, 6);
+            this.headMenuItemAbout.Name = "headMenuItemAbout";
+            this.headMenuItemAbout.Size = new System.Drawing.Size(247, 26);
+            this.headMenuItemAbout.Text = "About";
+            this.headMenuItemAbout.Click += new System.EventHandler(this.OpenAboutWindow);
             // 
-            // buttonRefreshCA
+            // toolTipHelp
             // 
-            this.buttonRefreshCA.Location = new System.Drawing.Point(468, 23);
-            this.buttonRefreshCA.Name = "buttonRefreshCA";
-            this.buttonRefreshCA.Size = new System.Drawing.Size(84, 24);
-            this.buttonRefreshCA.TabIndex = 1;
-            this.buttonRefreshCA.Text = "Refresh";
-            this.buttonRefreshCA.UseVisualStyleBackColor = true;
-            this.buttonRefreshCA.Click += new System.EventHandler(this.RefreshCertificateAuthorities);
+            this.toolTipHelp.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTipHelp.ToolTipTitle = "Field help";
             // 
-            // checkBoxWildcardToCommonName
+            // buttonShowInformationCA
             // 
-            this.checkBoxWildcardToCommonName.AutoSize = true;
-            this.checkBoxWildcardToCommonName.Checked = true;
-            this.checkBoxWildcardToCommonName.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxWildcardToCommonName.Location = new System.Drawing.Point(9, 47);
-            this.checkBoxWildcardToCommonName.Name = "checkBoxWildcardToCommonName";
-            this.checkBoxWildcardToCommonName.Size = new System.Drawing.Size(333, 21);
-            this.checkBoxWildcardToCommonName.TabIndex = 10;
-            this.checkBoxWildcardToCommonName.Text = "Add wildcard to Common Name (required for IIS)";
-            this.checkBoxWildcardToCommonName.UseVisualStyleBackColor = true;
+            this.buttonShowInformationCA.Location = new System.Drawing.Point(316, 22);
+            this.buttonShowInformationCA.Name = "buttonShowInformationCA";
+            this.buttonShowInformationCA.Size = new System.Drawing.Size(75, 25);
+            this.buttonShowInformationCA.TabIndex = 2;
+            this.buttonShowInformationCA.Text = "Info";
+            this.buttonShowInformationCA.UseVisualStyleBackColor = true;
+            this.buttonShowInformationCA.Click += new System.EventHandler(this.ShowInformationAboutSelectedCA);
             // 
-            // groupBoxCommonName
+            // buttonDeleteCA
             // 
-            this.groupBoxCommonName.Controls.Add(this.textBoxCommonName);
-            this.groupBoxCommonName.Controls.Add(this.checkBoxWildcardToCommonName);
-            this.groupBoxCommonName.Location = new System.Drawing.Point(7, 22);
-            this.groupBoxCommonName.Name = "groupBoxCommonName";
-            this.groupBoxCommonName.Size = new System.Drawing.Size(545, 89);
-            this.groupBoxCommonName.TabIndex = 11;
-            this.groupBoxCommonName.TabStop = false;
-            this.groupBoxCommonName.Text = "Common Name (CA)";
-            // 
-            // checkForUpdatesToolStripMenuItem
-            // 
-            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(247, 26);
-            this.checkForUpdatesToolStripMenuItem.Text = "Check for updates";
-            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.CheckForUpdates);
+            this.buttonDeleteCA.ForeColor = System.Drawing.Color.Red;
+            this.buttonDeleteCA.Location = new System.Drawing.Point(477, 22);
+            this.buttonDeleteCA.Name = "buttonDeleteCA";
+            this.buttonDeleteCA.Size = new System.Drawing.Size(75, 25);
+            this.buttonDeleteCA.TabIndex = 3;
+            this.buttonDeleteCA.Text = "Delete";
+            this.buttonDeleteCA.UseVisualStyleBackColor = true;
+            this.buttonDeleteCA.Click += new System.EventHandler(this.DeleteSelectedCA);
             // 
             // Main
             // 
@@ -444,7 +481,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.headMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -453,18 +490,18 @@
             this.tabIssue.ResumeLayout(false);
             this.groupBoxCertificateAuthority.ResumeLayout(false);
             this.groupBoxSelfSignedCertificate.ResumeLayout(false);
+            this.groupBoxCommonName.ResumeLayout(false);
+            this.groupBoxCommonName.PerformLayout();
             this.groupBoxSAN.ResumeLayout(false);
             this.groupBoxSAN.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.headMenu.ResumeLayout(false);
-            this.headMenu.PerformLayout();
             this.tabCertificateAuthority.ResumeLayout(false);
             this.groupBoxCreateCertificateAuthority.ResumeLayout(false);
             this.groupBoxCreateCertificateAuthority.PerformLayout();
             this.groupBoxSubjectAlternativeNamesCA.ResumeLayout(false);
             this.groupBoxSubjectAlternativeNamesCA.PerformLayout();
-            this.groupBoxCommonName.ResumeLayout(false);
-            this.groupBoxCommonName.PerformLayout();
+            this.headMenu.ResumeLayout(false);
+            this.headMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -505,6 +542,8 @@
         private System.Windows.Forms.Button buttonRefreshCA;
         private System.Windows.Forms.GroupBox groupBoxCommonName;
         private System.Windows.Forms.CheckBox checkBoxWildcardToCommonName;
-        private System.Windows.Forms.ToolStripMenuItem checkForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolTip toolTipHelp;
+        private System.Windows.Forms.Button buttonShowInformationCA;
+        private System.Windows.Forms.Button buttonDeleteCA;
     }
 }

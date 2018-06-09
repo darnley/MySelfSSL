@@ -29,9 +29,17 @@ namespace Holbor.MySelfSSL
         /// <param name="issuerSubject"></param>
         public static void CreateCertificate(string subjectName, X509Certificate2 issuerCertificate, string[] subjectAlternativeNames, KeyPurposeID[] usages)
         {
-            X509Certificate2 certificate = IssueCertificate(subjectName, issuerCertificate, subjectAlternativeNames, usages);
-                
-            AddCertToStore(certificate, StoreName.My, StoreLocation.LocalMachine);
+            X509Certificate2 certificate = FindCertificateBySubject(subjectName, false); 
+
+            if (certificate == null)
+            {
+                certificate = IssueCertificate(subjectName, issuerCertificate, subjectAlternativeNames, usages);
+                AddCertToStore(certificate, StoreName.My, StoreLocation.LocalMachine);
+            }
+            else
+            {
+                throw new ArgumentException("A certificate with this Common Name (CN) already exists.\nPlease choose another Common Name (CN) for better identification.");
+            }
         }
 
         /// <summary>
@@ -49,6 +57,9 @@ namespace Holbor.MySelfSSL
             {
                 certificateCA = CreateCertificateAuthorityCertificate(subjectName, null, null);
                 AddCertToStore(certificateCA, StoreName.Root, StoreLocation.LocalMachine);
+            } else
+            {
+                throw new ArgumentException("A certificate with this Common Name (CN) already exists.\nPlease choose another Common Name (CN) for better identification.");
             }
         }
 
@@ -414,6 +425,31 @@ namespace Holbor.MySelfSSL
             return null;
         }
 
+        public static void DeleteCertificate(X509Certificate2 certificateToDelete, bool isCertificateAuthority = false)
+        {
+            X509Store certStore;
+
+            if (isCertificateAuthority)
+            {
+                certStore = new X509Store(StoreName.Root, StoreLocation.LocalMachine);
+            }
+            else
+            {
+                certStore = new X509Store(StoreName.My, StoreLocation.LocalMachine);
+            }
+
+            certStore.Open(OpenFlags.ReadWrite);
+
+            certStore.Remove(certificateToDelete);
+
+            certStore.Close();
+        }
+
+        public static string CertificateToString(object certificate)
+        {
+            return string.Join(", ", certificate);
+        }
+
         public static X509Certificate2 FindCertificateBySubject(string certificateSubject, bool isCertificateAuthority = false)
         {
             X509Certificate2 cert;
@@ -424,7 +460,7 @@ namespace Holbor.MySelfSSL
                 certStore = new X509Store(StoreName.Root, StoreLocation.LocalMachine);
             } else
             {
-                certStore = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+                certStore = new X509Store(StoreName.My, StoreLocation.LocalMachine);
             }
             
             certStore.Open(OpenFlags.ReadOnly);

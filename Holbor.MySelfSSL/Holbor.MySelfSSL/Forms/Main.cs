@@ -89,6 +89,16 @@ namespace Holbor.MySelfSSL.Forms
                         {
                             statusForm.Close();
                             LoadCertificateAuthorities();
+
+                            if (!t.IsFaulted)
+                            {
+                                ShowCertificateSuccessDialog();
+                            }
+                            else
+                            {
+                                AggregateException exception = t.Exception;
+                                ShowCertificateErrorDialog(exception.InnerException.Message);
+                            }
                         });
                     });
 #pragma warning restore CS4014
@@ -130,14 +140,23 @@ namespace Holbor.MySelfSSL.Forms
                         {
                             statusForm.Close();
                             LoadCertificateAuthorities();
-                            ShowCertificateSuccessDialog(true);
+                            EnableOrDisableCertificateFields();
+                            
+                            if (!t.IsFaulted)
+                            {
+                                ShowCertificateSuccessDialog(true);
+                            } else
+                            {
+                                AggregateException exception = t.Exception;
+                                ShowCertificateErrorDialog(exception.InnerException.Message);
+                            }
                         });
                     });
 #pragma warning restore CS4014
 
                 statusForm.ShowDialog(this);
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Format error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -153,6 +172,11 @@ namespace Holbor.MySelfSSL.Forms
             }
 
             MessageBox.Show(message, "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ShowCertificateErrorDialog(string message = "There was an error creating the certificate.", string title = "Certificate Creation Error")
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void RefreshCertificateAuthorities(object sender, EventArgs e)
@@ -182,6 +206,11 @@ namespace Holbor.MySelfSSL.Forms
                 {
                     listBoxSAN.Items.Remove(selectedItems[i]);
                 } 
+
+                if (listBoxSAN.Items.Count == 0 || listBoxSAN.SelectedIndex == -1)
+                {
+                    buttonRemoveSAN.Enabled = false;
+                }
             }
         }
 
@@ -243,6 +272,11 @@ namespace Holbor.MySelfSSL.Forms
                 {
                     listBoxSANCA.Items.Remove(selectedItems[i]);
                 }
+
+                if (listBoxSANCA.Items.Count == 0 || listBoxSANCA.SelectedIndex == -1)
+                {
+                    buttonRemoveSANCA.Enabled = false;
+                }
             }
         }
 
@@ -285,6 +319,76 @@ namespace Holbor.MySelfSSL.Forms
         private void CheckForUpdates(object sender, EventArgs e)
         {
             MySelfSSL.Update.InstallUpdateSyncWithInfo();
+        }
+
+        private void OnTypeInSAN(object sender, EventArgs e)
+        {
+            if (textBoxSAN.TextLength > 0)
+            {
+                buttonAddSAN.Enabled = true;
+            }
+            else
+            {
+                buttonAddSAN.Enabled = false;
+            }
+        }
+
+        private void OnClickInASAN(object sender, EventArgs e)
+        {
+            if (listBoxSAN.SelectedIndex != -1)
+            {
+                buttonRemoveSAN.Enabled = true;
+            } else
+            {
+                buttonRemoveSAN.Enabled = false;
+            }
+        }
+
+        private void OnTypeInSANCA(object sender, EventArgs e)
+        {
+            if (textBoxSANCA.TextLength > 0)
+            {
+                buttonAddSANCA.Enabled = true;
+            }
+            else
+            {
+                buttonAddSANCA.Enabled = false;
+            }
+        }
+
+        private void OnClickInASANCA(object sender, EventArgs e)
+        {
+            if (listBoxSANCA.SelectedIndex != -1)
+            {
+                buttonRemoveSANCA.Enabled = true;
+            }
+            else
+            {
+                buttonRemoveSANCA.Enabled = false;
+            }
+        }
+
+        private void ShowInformationAboutSelectedCA(object sender, EventArgs e)
+        {
+            MessageBox.Show(Certificate.CertificateToString(comboBoxCertificateAuthorities.SelectedItem), "Certificate Authority Information");
+        }
+
+        private void DeleteSelectedCA(object sender, EventArgs e)
+        {
+            if (comboBoxCertificateAuthorities.SelectedIndex != -1)
+            {
+                DialogResult dialogResult = MessageBox.Show("BE SURE OF WHAT YOU ARE DOING!\n\nAre you sure you want to delete this Certification Authority (CA)?\nOther certificates that have been created based on it WILL BE INVALIDATED.", "Delete Certificate", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    X509Certificate2 certificateToDelete = (X509Certificate2)comboBoxCertificateAuthorities.SelectedItem;
+
+                    Certificate.DeleteCertificate(certificateToDelete, true);
+
+                    LoadCertificateAuthorities();
+                    EnableOrDisableCertificateFields();
+                }
+            }
         }
     }
 }

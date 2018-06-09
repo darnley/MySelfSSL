@@ -224,10 +224,14 @@ namespace Holbor.MySelfSSL.Forms
             if (comboBoxCertificateAuthorities.Items.Count > 0)
             {
                 groupBoxSelfSignedCertificate.Enabled = true;
+                buttonShowInformationCA.Enabled = true;
+                buttonDeleteCA.Enabled = true;
             }
             else
             {
                 groupBoxSelfSignedCertificate.Enabled = false;
+                buttonShowInformationCA.Enabled = false;
+                buttonDeleteCA.Enabled = false;
                 tabControl1.SelectedIndex = 1;
                 buttonCreateCertificateCA.Focus();
             }

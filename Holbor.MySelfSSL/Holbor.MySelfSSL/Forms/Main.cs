@@ -81,10 +81,17 @@ namespace Holbor.MySelfSSL.Forms
         {
             try
             {
+                if (String.IsNullOrWhiteSpace(textBoxCommonNameCA.Text))
+                {
+                    throw new MissingFieldException("Common Name (CN) is required.");
+                }
+
                 statusForm = new Status();
                 statusForm.ChangeLoadingText("Creating CA certificate...");
+                string commonName = String.Format("MySelfSSL {0}", textBoxCommonNameCA.Text);
+                string[] subjectAlternativeNames = listBoxSAN.Items.OfType<string>().ToArray();
 
-                Task createCertificateTask = new Task(() => Certificate.CreateCACertificate("MySelfSSL Root Development CA", null, null));
+                Task createCertificateTask = new Task(() => Certificate.CreateCACertificate(commonName, subjectAlternativeNames, null));
 
                 // Start the task
                 createCertificateTask
@@ -99,6 +106,7 @@ namespace Holbor.MySelfSSL.Forms
                         {
                             statusForm.Close();
                             LoadCertificateAuthorities();
+                            ShowCertificateSuccessDialog(true);
                         });
                     });
 #pragma warning restore CS4014
@@ -109,6 +117,18 @@ namespace Holbor.MySelfSSL.Forms
             {
                 MessageBox.Show(ex.Message, "Format error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ShowCertificateSuccessDialog(bool isCertificateAuthorityCertificate = false)
+        {
+            string message = "Certificate successfully created!";
+
+            if (isCertificateAuthorityCertificate)
+            {
+                message = "CA " + message;
+            }
+
+            MessageBox.Show(message, "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void RefreshCertificateAuthorities(object sender, EventArgs e)
@@ -180,6 +200,59 @@ namespace Holbor.MySelfSSL.Forms
             else
             {
                 groupBoxSelfSignedCertificate.Enabled = false;
+            }
+        }
+
+        private void Exit(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void OpenAboutWindow(object sender, EventArgs e)
+        {
+            About aboutWindow = new About();
+
+            aboutWindow.ShowDialog(this);
+        }
+
+        private void AddSANCertificateAuthority(object sender, EventArgs e)
+        {
+            if (listBoxSANCA.Items.Contains(textBoxSANCA.Text))
+            {
+                MessageBox.Show("This Subject Alternative Name (SAN) alterady exists on this context.", "Already added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(textBoxSANCA.Text))
+            {
+                listBoxSANCA.Items.Add(textBoxSANCA.Text);
+                textBoxSANCA.Focus();
+                textBoxSANCA.SelectAll();
+            }
+        }
+
+        private void RemoveSANCertificateAuthority(object sender, EventArgs e)
+        {
+            if (listBoxSANCA.SelectedIndex != -1)
+            {
+                ListBox.SelectedObjectCollection selectedItems = new ListBox.SelectedObjectCollection(listBoxSANCA);
+                selectedItems = listBoxSANCA.SelectedItems;
+
+                for (int i = selectedItems.Count - 1; i >= 0; i--)
+                {
+                    listBoxSANCA.Items.Remove(selectedItems[i]);
+                }
+            }
+        }
+
+        private void OnTypeInCommonNameCA(object sender, EventArgs e)
+        {
+            if (textBoxCommonNameCA.TextLength > 0)
+            {
+                buttonCreateCertificateCA.Enabled = true;
+            } else
+            {
+                buttonCreateCertificateCA.Enabled = false;
             }
         }
     }

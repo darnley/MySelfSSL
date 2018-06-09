@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
+using System.Reflection;
 using System.Security.Principal;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Holbor.MySelfSSL
@@ -18,17 +17,57 @@ namespace Holbor.MySelfSSL
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            WindowsPrincipal myPrincipal = new WindowsPrincipal(WindowsIdentity.GetCurrent());
-            if (myPrincipal.IsInRole(WindowsBuiltInRole.Administrator) == false)
+            bool isRunningAsAdministrator = IsRunAsAdministrator();
+
+            if (!isRunningAsAdministrator)
             {
-                //show messagebox - displaying a messange to the user that rights are missing
-                MessageBox.Show("You need to run the application using the \"Run as administrator\" option.", "Administrator Right Required", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Debugger.IsAttached)
+                {
+                    throw new AccessViolationException("Run Visual Studio as administrator.");
+                }
+
+                RunAsAdministrator();
             }
-            else
+
+            if (isRunningAsAdministrator)
             {
                 Application.Run(new Forms.Main());
             }
-            
+        }
+
+        private static bool IsRunAsAdministrator()
+        {
+            var wi = WindowsIdentity.GetCurrent();
+            var wp = new WindowsPrincipal(wi);
+
+            return wp.IsInRole(WindowsBuiltInRole.Administrator);
+        }
+
+        private static void RunAsAdministrator()
+        {
+            if (!IsRunAsAdministrator())
+            {
+                var processInfo = new ProcessStartInfo(Assembly.GetExecutingAssembly().CodeBase)
+                {
+                    // The following properties run the new process as administrator
+                    UseShellExecute = true,
+                    Verb = "runas"
+                };
+
+                // Start the new process
+                try
+                {
+                    Process.Start(processInfo);
+                }
+                catch (Exception)
+                {
+                    // The user did not allow the application to run as administrator
+                    MessageBox.Show("Sorry, this application must be run as Administrator.");
+                }
+
+                // Shut down the current process
+                Application.Exit();
+            }
         }
     }
 }

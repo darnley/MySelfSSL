@@ -16,6 +16,14 @@ namespace Holbor.MySelfSSL.Forms
             InitializeComponent();
         }
 
+        private void Init(object sender, EventArgs e)
+        {
+            LoadCertificateAuthorities();
+            EnableOrDisableCertificateFields();
+
+            comboBoxCertificateAuthorities.DisplayMember = "FriendlyName";
+        }
+
         private void LoadCertificateAuthorities()
         {
             var certificates = Certificate.GetAll(true);
@@ -33,23 +41,39 @@ namespace Holbor.MySelfSSL.Forms
             }
         }
 
-        private void Init(object sender, EventArgs e)
-        {
-            LoadCertificateAuthorities();
-            EnableOrDisableCertificateFields();
-        }
-
-        private void CreateCertificate()
+        private void CreateCertificate(object sender, EventArgs e)
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(textBoxCommonName.Text))
+                {
+                    throw new MissingFieldException("Common name is required.");
+                }
+
+                if (listBoxSAN.Items.Count == 0)
+                {
+                    DialogResult result = MessageBox.Show("Do you REALLY want to leave SAN empty? It will be required for web certificates.", "Warning",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
                 statusForm = new Status();
                 statusForm.ChangeLoadingText("Creating certificate...");
-                
+
                 string certificateSubject = textBoxCommonName.Text;
+
+                if (checkBoxWildcardToCommonName.Checked)
+                {
+                    certificateSubject = "*" + certificateSubject;
+                }
+
                 X509Certificate2 selectedCertificateAuthority = (X509Certificate2)comboBoxCertificateAuthorities.SelectedItem;
                 string[] subjectAlternativeNames = listBoxSAN.Items.OfType<string>().ToArray();
-                
+
                 Task createCertificateTask = new Task(() => Certificate.CreateCertificate(certificateSubject, selectedCertificateAuthority, subjectAlternativeNames, new[] { KeyPurposeID.IdKPServerAuth }));
 
                 // Start the task
@@ -137,38 +161,13 @@ namespace Holbor.MySelfSSL.Forms
             EnableOrDisableCertificateFields();
         }
 
-        private void AttemptCertificateCreation(object sender, EventArgs e)
-        {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(textBoxCommonName.Text))
-                {
-                    throw new MissingFieldException("Common name is required.");
-                }
-
-                if (listBoxSAN.Items.Count == 0)
-                {
-                    DialogResult result = MessageBox.Show("Do you REALLY want to leave SAN empty? It will be required for web certificates.", "Warning",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-
-                CreateCertificate();
-            } catch (MissingFieldException ex)
-            {
-                MessageBox.Show(ex.Message, "Required field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void AddSAN(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(textBoxSAN.Text))
             {
                 listBoxSAN.Items.Add(textBoxSAN.Text);
+                textBoxSAN.Focus();
+                textBoxSAN.SelectAll();
             }
         }
 
@@ -200,6 +199,7 @@ namespace Holbor.MySelfSSL.Forms
             else
             {
                 groupBoxSelfSignedCertificate.Enabled = false;
+                tabControl1.SelectedIndex = 1;
             }
         }
 
@@ -245,6 +245,18 @@ namespace Holbor.MySelfSSL.Forms
             }
         }
 
+        private void OnTypeInCommonName(object sender, EventArgs e)
+        {
+            if (textBoxCommonName.TextLength > 0)
+            {
+                buttonCreateCertificate.Enabled = true;
+            }
+            else
+            {
+                buttonCreateCertificate.Enabled = false;
+            }
+        }
+
         private void OnTypeInCommonNameCA(object sender, EventArgs e)
         {
             if (textBoxCommonNameCA.TextLength > 0)
@@ -253,6 +265,19 @@ namespace Holbor.MySelfSSL.Forms
             } else
             {
                 buttonCreateCertificateCA.Enabled = false;
+            }
+        }
+
+        private void ShowDefaultPasswordInMessageBox(object sender, EventArgs e)
+        {
+            MessageBox.Show("The default password for MMC exportation is: \n\npassword", "Default password", MessageBoxButtons.OK, MessageBoxIcon.None);
+        }
+
+        private void OnClickInCommonName(object sender, EventArgs e)
+        {
+            if (textBoxCommonName.Text.Equals("MySelfSSL Local Development"))
+            {
+                textBoxCommonName.SelectAll();
             }
         }
     }

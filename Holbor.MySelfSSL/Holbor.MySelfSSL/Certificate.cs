@@ -211,7 +211,7 @@ namespace Holbor.MySelfSSL
             certificateGenerator.SetSubjectDN(subjectDN);
 
             // Our certificate needs valid from/to values.
-            var notBefore = DateTime.UtcNow.Date;
+            var notBefore = DateTime.UtcNow;
             var notAfter = notBefore.AddYears(2);
 
             certificateGenerator.SetNotBefore(notBefore);
@@ -402,7 +402,7 @@ namespace Holbor.MySelfSSL
             }
 
             certStore.Open(OpenFlags.ReadOnly);
-            certs = certStore.Certificates.OfType<X509Certificate2>().Where(x => x.Subject.StartsWith("CN=MySelfSSL")).ToArray();
+            certs = certStore.Certificates.OfType<X509Certificate2>().Where(x => x.Subject.StartsWith("CN=MySelfSSL")).OrderBy(y => y.NotBefore).ToArray();
 
             certStore.Close();
 

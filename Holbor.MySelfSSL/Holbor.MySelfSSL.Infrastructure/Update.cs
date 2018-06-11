@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Holbor.MySelfSSL
 {
-    static class Update
+    public static class Update
     {
         public static void InstallUpdateSyncWithInfo()
         {

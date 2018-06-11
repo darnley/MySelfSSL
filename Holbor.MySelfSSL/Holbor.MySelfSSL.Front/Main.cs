@@ -5,11 +5,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Holbor.MySelfSSL.Forms
+namespace Holbor.MySelfSSL.Front
 {
     public partial class Main : Form
     {
-        public static Forms.Status statusForm;
+        public static Status statusForm;
 
         public Main()
         {

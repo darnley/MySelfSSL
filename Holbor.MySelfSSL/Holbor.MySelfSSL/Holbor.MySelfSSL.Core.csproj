@@ -73,7 +73,7 @@
     <ApplicationIcon>key.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Holbor.MySelfSSL.Program</StartupObject>
+    <StartupObject>Holbor.MySelfSSL.Core.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -98,37 +98,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Certificate.cs" />
-    <Compile Include="Forms\About.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\About.Designer.cs">
-      <DependentUpon>About.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Status.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Status.Designer.cs">
-      <DependentUpon>Status.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Update.cs" />
-    <EmbeddedResource Include="Forms\About.resx">
-      <DependentUpon>About.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Status.resx">
-      <DependentUpon>Status.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -176,6 +147,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="key.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Holbor.MySelfSSL.Front\Holbor.MySelfSSL.Front.csproj">
+      <Project>{ea08066d-2315-4720-9386-fd6781384414}</Project>
+      <Name>Holbor.MySelfSSL.Front</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

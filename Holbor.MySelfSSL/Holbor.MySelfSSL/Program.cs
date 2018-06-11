@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Security.Principal;
 using System.Windows.Forms;
 
-namespace Holbor.MySelfSSL
+namespace Holbor.MySelfSSL.Core
 {
     static class Program
     {
@@ -31,7 +31,7 @@ namespace Holbor.MySelfSSL
 
             if (isRunningAsAdministrator)
             {
-                Application.Run(new Forms.Main());
+                Application.Run(new Front.Main());
             }
         }
 

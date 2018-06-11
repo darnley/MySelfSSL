@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Holbor.MySelfSSL.Forms
+namespace Holbor.MySelfSSL.Front
 {
     partial class About : Form
     {

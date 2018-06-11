@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Holbor.MySelfSSL.Forms
+namespace Holbor.MySelfSSL.Front
 {
     public partial class Status : Form
     {

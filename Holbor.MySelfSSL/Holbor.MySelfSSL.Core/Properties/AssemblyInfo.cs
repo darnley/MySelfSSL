@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MySelfSSL")]
-[assembly: AssemblyDescription("Create a self-signed certificate")]
+[assembly: AssemblyDescription("Create self-signed certificates easily with your own Certificate Authority (CA)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Darnley Costa")]
 [assembly: AssemblyProduct("MySelfSSL")]
@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(true)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ba8d8ef5-1ee9-408b-99f9-4d779ed72749")]
+[assembly: Guid("27758517-6ccf-46a0-9f3c-c9ac7a7dee1b")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.2.5")]
-[assembly: AssemblyFileVersion("1.0.2.5")]
+[assembly: AssemblyVersion("1.0.2.6")]
+[assembly: AssemblyFileVersion("1.0.2.6")]
 [assembly: NeutralResourcesLanguage("en-US")]
 

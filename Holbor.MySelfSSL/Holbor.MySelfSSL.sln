@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holbor.MySelfSSL", "Holbor.MySelfSSL\Holbor.MySelfSSL.csproj", "{BA8D8EF5-1EE9-408B-99F9-4D779ED72749}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holbor.MySelfSSL.Core", "Holbor.MySelfSSL\Holbor.MySelfSSL.Core.csproj", "{BA8D8EF5-1EE9-408B-99F9-4D779ED72749}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holbor.MySelfSSL.Front", "Holbor.MySelfSSL.Front\Holbor.MySelfSSL.Front.csproj", "{EA08066D-2315-4720-9386-FD6781384414}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holbor.MySelfSSL.Infrastructure", "Holbor.MySelfSSL.Infrastructure\Holbor.MySelfSSL.Infrastructure.csproj", "{935B953D-9A86-4137-8E3A-3C8DB2C774B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{BA8D8EF5-1EE9-408B-99F9-4D779ED72749}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA8D8EF5-1EE9-408B-99F9-4D779ED72749}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA8D8EF5-1EE9-408B-99F9-4D779ED72749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA08066D-2315-4720-9386-FD6781384414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA08066D-2315-4720-9386-FD6781384414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA08066D-2315-4720-9386-FD6781384414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA08066D-2315-4720-9386-FD6781384414}.Release|Any CPU.Build.0 = Release|Any CPU
+		{935B953D-9A86-4137-8E3A-3C8DB2C774B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{935B953D-9A86-4137-8E3A-3C8DB2C774B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{935B953D-9A86-4137-8E3A-3C8DB2C774B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{935B953D-9A86-4137-8E3A-3C8DB2C774B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

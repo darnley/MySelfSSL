@@ -23,7 +23,7 @@ namespace Holbor.MySelfSSL
     /// <summary>
     /// Manipulate X509 certificates
     /// </summary>
-    static class Certificate
+    public static class Certificate
     {
         /// <summary>
         /// Create a new certificate and certificate of Certificate Authority (CA)

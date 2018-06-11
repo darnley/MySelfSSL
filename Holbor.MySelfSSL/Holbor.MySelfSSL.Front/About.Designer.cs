@@ -1,4 +1,4 @@
-﻿namespace Holbor.MySelfSSL.Forms
+﻿namespace Holbor.MySelfSSL.Front
 {
     partial class About
     {

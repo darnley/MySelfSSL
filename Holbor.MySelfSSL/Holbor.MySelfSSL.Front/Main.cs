@@ -21,6 +21,7 @@ namespace Holbor.MySelfSSL.Front
             LoadCertificateAuthorities();
             EnableOrDisableCertificateFields();
             comboBoxCertificateAuthorities.DisplayMember = "FriendlyName";
+            listBoxExistentCertificateAuthorities.DisplayMember = "FriendlyName";
         }
 
         private void LoadCertificateAuthorities()
@@ -43,6 +44,9 @@ namespace Holbor.MySelfSSL.Front
                 // Keep the first certificate selected
                 comboBoxCertificateAuthorities.SelectedIndex = 0;
             }
+
+            listBoxExistentCertificateAuthorities.Items.Clear();
+            listBoxExistentCertificateAuthorities.Items.AddRange(comboBoxCertificateAuthorities.Items.Cast<object>().ToArray());
         }
 
         private void CreateCertificate(object sender, EventArgs e)
@@ -229,13 +233,11 @@ namespace Holbor.MySelfSSL.Front
             {
                 groupBoxSelfSignedCertificate.Enabled = true;
                 buttonShowInformationCA.Enabled = true;
-                buttonDeleteCA.Enabled = true;
             }
             else
             {
                 groupBoxSelfSignedCertificate.Enabled = false;
                 buttonShowInformationCA.Enabled = false;
-                buttonDeleteCA.Enabled = false;
                 tabControl1.SelectedIndex = 1;
                 buttonCreateCertificateCA.Focus();
             }
@@ -378,18 +380,40 @@ namespace Holbor.MySelfSSL.Front
 
         private void ShowInformationAboutSelectedCA(object sender, EventArgs e)
         {
-            MessageBox.Show(Certificate.CertificateToString(comboBoxCertificateAuthorities.SelectedItem), "Certificate Authority Information");
+            object selectedCertificate = null;
+
+            if (tabControl1.SelectedTab.Name.Equals("tabCertificateAuthority"))
+            {
+                selectedCertificate = listBoxExistentCertificateAuthorities.SelectedItem;
+            }
+            else if (tabControl1.SelectedTab.Name.Equals("tabIssue"))
+            {
+                selectedCertificate = comboBoxCertificateAuthorities.SelectedItem;
+            }
+
+            MessageBox.Show(Certificate.CertificateToString(selectedCertificate), "Certificate Authority Information");
         }
 
         private void DeleteSelectedCA(object sender, EventArgs e)
         {
-            if (comboBoxCertificateAuthorities.SelectedIndex != -1)
+            object selectedCertificate = null;
+
+            if (tabControl1.SelectedTab.Name.Equals("tabCertificateAuthority"))
+            {
+                selectedCertificate = listBoxExistentCertificateAuthorities.SelectedItem;
+            }
+            else if (tabControl1.SelectedTab.Name.Equals("tabIssue"))
+            {
+                selectedCertificate = comboBoxCertificateAuthorities.SelectedItem;
+            }
+
+            if (selectedCertificate != null)
             {
                 DialogResult dialogResult = MessageBox.Show("BE SURE OF WHAT YOU ARE DOING!\n\nAre you sure you want to delete this Certification Authority (CA)?\nOther certificates that have been created based on it WILL BE INVALIDATED.", "Delete Certificate", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    X509Certificate2 certificateToDelete = (X509Certificate2)comboBoxCertificateAuthorities.SelectedItem;
+                    X509Certificate2 certificateToDelete = (X509Certificate2)selectedCertificate;
 
                     Certificate.DeleteCertificate(certificateToDelete, true);
 
